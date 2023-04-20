@@ -15,8 +15,10 @@ export default async function Template({
 }: {
   params: { template: string };
 }) {
-  const temp: StatusApi<IList> = await get_template(params.template);
-  console.log(temp);
+  const temp: StatusApi<IList> = await get_template(
+    params.template.replace("-", " ")
+  );
+
   if (temp === undefined || (temp as ErrorStatus).error !== undefined)
     return <NotFound />;
 

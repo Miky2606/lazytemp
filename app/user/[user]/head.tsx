@@ -1,7 +1,8 @@
-export default function Head() {
+export default function Head({ params }: { params: { user: string } }) {
+  const user = params.user.split("/");
   return (
     <>
-      <title>LazyTemp</title>
+      <title>{user[user.length - 1]}</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta
         name="description"

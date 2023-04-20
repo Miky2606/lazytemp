@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
-import { get_user_db } from "../../../../db/utils_db";
+import { get_user_code } from "../../../db/utils_db";
+import { headers } from "next/headers";
 
-export async function GET(req: Request, params: { params: { user: string } }) {
+export async function GET(req: Request) {
+  const header = headers();
+
   try {
-    const { user, id } = await get_user_db({ name: params.params.user });
+    const user = await get_user_code(header.get("code") as string);
 
     if (user === undefined)
       return NextResponse.json(
@@ -16,11 +19,11 @@ export async function GET(req: Request, params: { params: { user: string } }) {
       );
 
     return NextResponse.json({
-      success: { user: user.data(), id: id },
+      success: user.data(),
     });
   } catch (error: unknown) {
     return NextResponse.json(
-      { error: "Problems with the server" },
+      { error: "Problems with the server" + error },
       {
         status: 500,
       }

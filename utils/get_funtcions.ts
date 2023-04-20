@@ -27,21 +27,13 @@ export const get_template = cache(
   }
 );
 
-export const get_all_template = cache(async (): Promise<IList[]> => {
-  const promise = new Promise<IList[]>((resolve) => {
-    return setTimeout(() => {
-      resolve(list);
-    }, 3000);
-  });
-
-  return promise;
-});
-
 export const get_user = cache(
-  async (user: string): Promise<StatusApi<IUser>> => {
+  async (user: string): Promise<StatusApi<{ user: IUser; id: string }>> => {
     const url = process.env.API_URL as string;
     try {
-      const data = await axios.get<StatusApi<IUser>>(`${url}/user/${user}`);
+      const data = await axios.get<StatusApi<{ user: IUser; id: string }>>(
+        `${url}/user/${user}`
+      );
 
       return data.data;
     } catch (error) {

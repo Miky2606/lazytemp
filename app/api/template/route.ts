@@ -12,7 +12,8 @@ import { v4 as uuidv4 } from "uuid";
 import { nanoid } from "nanoid";
 
 export async function POST(req: Request) {
-  let temp = (await req.json()) as IList;
+  let request = await req.json();
+  const temp = request.temp as IList;
 
   if (temp === undefined)
     return NextResponse.json({
@@ -31,7 +32,7 @@ export async function POST(req: Request) {
 
     if (get_template !== undefined)
       return NextResponse.json(
-        { error: "Temp exist" },
+        { error: "Template exist" },
         {
           status: 200,
         }
@@ -76,5 +77,12 @@ export async function GET(req: Request) {
       },
       { status: 200 }
     );
-  } catch (error) {}
+  } catch (error) {
+    return NextResponse.json(
+      {
+        success: error,
+      },
+      { status: 500 }
+    );
+  }
 }

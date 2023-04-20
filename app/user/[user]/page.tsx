@@ -9,14 +9,19 @@ import {
 import { IUser, InfoUser } from "./components/info_user";
 
 export default async function User({ params }: { params: { user: string } }) {
-  const user: StatusApi<IUser> = await get_user(params.user);
+  const user: StatusApi<{ user: IUser; id: string }> = await get_user(
+    params.user
+  );
 
   if (user === undefined || (user as ErrorStatus).error !== undefined)
     return <NotFound />;
 
   return (
     <Suspense>
-      <InfoUser user={(user as ApiStatus<IUser>).success} />
+      <InfoUser
+        user={(user as ApiStatus<{ user: IUser; id: string }>).success.user}
+        id={(user as ApiStatus<{ user: IUser; id: string }>).success.id}
+      />
     </Suspense>
   );
 }

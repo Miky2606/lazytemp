@@ -23,7 +23,7 @@ export interface IList {
 }
 
 export const TemplateView = (): JSX.Element => {
-  const { template: temp } = useOnSnapshotApi({
+  const { data: temp } = useOnSnapshotApi<IList>({
     collection: get_template_all,
   });
 
@@ -95,7 +95,7 @@ const ItemsList = (items: IList): JSX.Element => {
           <IoCloudDownloadSharp className="text-green-700" /> {items.downloads}
         </p>
       </div>
-      <CodeView text={items.name.toLowerCase()} />
+      <CodeView text={`temp -d ${items.name.toLowerCase()}`} />
       <p className=" p-2 text-sm">
         {items.description === ""
           ? "No Description"
@@ -103,7 +103,7 @@ const ItemsList = (items: IList): JSX.Element => {
       </p>
 
       <Link
-        href={`/template/${items.name.toLowerCase()}`}
+        href={`/template/${items.name.toLowerCase().replace(" ", "-")}`}
         className="bg-slate-600 text-white px-2 p-1 rounded hover:opacity-70 "
       >
         See Template

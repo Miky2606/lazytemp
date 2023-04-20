@@ -4,14 +4,15 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { IUser } from "../user/[user]/components/info_user";
+import { Logo } from "./logo";
 
 export const NavbarView = (): JSX.Element => {
   const { data: session } = useSession();
   const user = session as IUser;
 
   return (
-    <nav className="flex justify-between p-2  ">
-      <div>Logo</div>
+    <nav className="flex justify-between p-2  bg-gray-800 border-gray-600 text-white">
+      <Logo />
       <div>
         <ul className="flex justify-between gap-3">
           {!session ? (
@@ -35,7 +36,7 @@ export const NavbarView = (): JSX.Element => {
                 </Link>
               ) : null}
               <button onClick={() => signOut()}>
-                <li className="bg-slate-700 py-1 px-2 rounded-full hover:bg-opacity-70 text-white">
+                <li className="bg-gray-500 py-1 px-2 rounded-full hover:bg-opacity-70 text-white">
                   Log Out
                 </li>
               </button>

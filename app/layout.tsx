@@ -7,6 +7,7 @@ import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import AuthContext from "./AuthContext";
+import { Footer } from "./components/footer";
 
 export default async function RootLayout({
   children,
@@ -26,6 +27,7 @@ export default async function RootLayout({
           <ContextProvider>
             <NavbarView />
             {children}
+            <Footer />
           </ContextProvider>
         </AuthContext>
       </body>

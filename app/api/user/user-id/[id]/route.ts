@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { get_user_db } from "../../../../db/utils_db";
+import { get_user_code, get_user_db } from "../../../../../db/utils_db";
 
-export async function GET(req: Request, params: { params: { user: string } }) {
+export async function GET(req: Request, params: { params: { id: string } }) {
   try {
-    const { user, id } = await get_user_db({ name: params.params.user });
+    const user = await get_user_code(params.params.id);
 
     if (user === undefined)
       return NextResponse.json(
@@ -16,7 +16,7 @@ export async function GET(req: Request, params: { params: { user: string } }) {
       );
 
     return NextResponse.json({
-      success: { user: user.data(), id: id },
+      success: { user: user.data(), id: user.id },
     });
   } catch (error: unknown) {
     return NextResponse.json(

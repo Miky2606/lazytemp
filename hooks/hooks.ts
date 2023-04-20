@@ -9,21 +9,21 @@ import {
 import { IUser } from "../app/user/[user]/components/info_user";
 import { get_user_id } from "../db/utils_db";
 
-export function useOnSnapshotApi({
+export function useOnSnapshotApi<T>({
   collection,
 }: {
   collection: CollectionReference<DocumentData> | Query<DocumentData>;
 }) {
-  const [template, setTemplate] = useState<IList[]>([]);
+  const [data, setData] = useState<T[]>([]);
   useEffect(() => {
     const resp = onSnapshot(collection, (query) => {
-      setTemplate(query.docs.map((map) => ({ ...map.data() })) as IList[]);
+      setData(query.docs.map((map) => ({ ...map.data() })) as T[]);
     });
 
     return resp;
   }, []);
 
-  return { template };
+  return { data };
 }
 
 export function useUser({ id }: { id: string }) {
@@ -38,10 +38,4 @@ export function useUser({ id }: { id: string }) {
   }, []);
 
   return { user };
-}
-
-export function useModal(open: string) {
-  const [modal, openModal] = useState<string>(open);
-
-  return { modal, openModal };
 }
