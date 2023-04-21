@@ -21,6 +21,7 @@ const nextConfig = {
     MESSAGIN: process.env.MESSAGIN,
     APP_ID: process.env.APP_ID,
     MEASUREMEN: process.env.MEASUREMEN,
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   },
 };
 
