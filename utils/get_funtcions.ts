@@ -1,6 +1,6 @@
 import { cache } from "react";
 import { IList } from "../components/template";
-import { list, users } from "../fake";
+
 import { IUser } from "../app/user/[user]/components/info_user";
 import axios, { AxiosResponse } from "axios";
 
