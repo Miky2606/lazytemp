@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { ContextProvider } from "../context/context";
 import { NavbarView } from "./components/navbar";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -30,6 +31,8 @@ export default async function RootLayout({
             <Footer />
           </ContextProvider>
         </AuthContext>
+
+        <Analytics />
       </body>
     </html>
   );
