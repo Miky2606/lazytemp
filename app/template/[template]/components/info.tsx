@@ -7,8 +7,9 @@ import Link from "next/link";
 import { useOnSnapshotApi, useUser } from "../../../../hooks/hooks";
 
 import { related } from "../../../../db/utils_db";
+import { TempUser } from "../../../../utils/get_funtcions";
 
-export const Info = ({ temp }: { temp: { user: IList } }): JSX.Element => {
+export const Info = ({ temp }: { temp: TempUser }): JSX.Element => {
   const { user } = useUser({ id: temp.user.user });
 
   return (

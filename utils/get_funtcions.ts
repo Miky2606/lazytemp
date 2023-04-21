@@ -11,13 +11,19 @@ export interface ApiStatus<T> {
   success: T;
 }
 
+export type TempUser = {
+  user: IList;
+};
+
 export type StatusApi<T> = ApiStatus<T> | ErrorStatus | undefined;
 
 export const get_template = cache(
-  async (temp: string): Promise<StatusApi<IList>> => {
+  async (temp: string): Promise<StatusApi<TempUser>> => {
     const url = process.env.API_URL as string;
     try {
-      const data = await axios.get<StatusApi<IList>>(`${url}/template/${temp}`);
+      const data = await axios.get<StatusApi<TempUser>>(
+        `${url}/template/${temp}`
+      );
 
       return data.data;
     } catch (error) {

@@ -4,6 +4,7 @@ import {
   ApiStatus,
   ErrorStatus,
   StatusApi,
+  TempUser,
   get_template,
 } from "../../../utils/get_funtcions";
 import { Info } from "./components/info";
@@ -15,7 +16,7 @@ export default async function Template({
 }: {
   params: { template: string };
 }) {
-  const temp: StatusApi<IList> = await get_template(
+  const temp: StatusApi<TempUser> = await get_template(
     params.template.replace("-", " ")
   );
 
@@ -25,7 +26,7 @@ export default async function Template({
   return (
     <div className="text-black">
       <Suspense fallback={<LoadingView />}>
-        <Info temp={(temp as ApiStatus<IList>).success} />
+        <Info temp={(temp as ApiStatus<TempUser>).success} />
       </Suspense>
     </div>
   );
