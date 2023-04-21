@@ -3,6 +3,7 @@ import {
   ApiStatus,
   ErrorStatus,
   StatusApi,
+  TempUser,
   get_template,
 } from "../../../utils/get_funtcions";
 
@@ -11,7 +12,7 @@ export default async function Head({
 }: {
   params: { template: string };
 }) {
-  const description: StatusApi<IList> = await get_template(params.template);
+  const description: StatusApi<TempUser> = await get_template(params.template);
   if (description === undefined || (description as ErrorStatus).error)
     return <title>Not Found</title>;
 
@@ -22,8 +23,8 @@ export default async function Head({
       <meta
         name="description"
         content={
-          (description as ApiStatus<IList>).success.description !== ""
-            ? (description as ApiStatus<IList>).success.description
+          (description as ApiStatus<TempUser>).success.user.description !== ""
+            ? (description as ApiStatus<TempUser>).success.user.description
             : "No description"
         }
       />
