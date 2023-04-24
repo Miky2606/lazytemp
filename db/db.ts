@@ -17,7 +17,7 @@ export const firebaseConfig = {
   appId: process.env.APP_ID,
   measurementId: process.env.MEASUREMEN,
 };
-
+//creqated
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore();
