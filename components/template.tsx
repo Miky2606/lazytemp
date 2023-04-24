@@ -95,7 +95,7 @@ const ItemsList = (items: IList): JSX.Element => {
           <IoCloudDownloadSharp className="text-green-700" /> {items.downloads}
         </p>
       </div>
-      <CodeView text={`temp -d ${items.name.toLowerCase()}`} />
+      <CodeView text={`temp --d ${items.name.toLowerCase()}`} />
       <p className=" p-2 text-sm">
         {items.description === ""
           ? "No Description"

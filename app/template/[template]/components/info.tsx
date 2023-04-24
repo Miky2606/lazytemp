@@ -22,7 +22,7 @@ export const Info = ({ temp }: { temp: TempUser }): JSX.Element => {
         {user?.name}
       </Link>
       <p>Downloads: {temp.user.downloads}</p>
-      <CodeView text={`temp -d ${temp.user.name.toLocaleLowerCase()}`} />
+      <CodeView text={`temp --d ${temp.user.name.toLocaleLowerCase()}`} />
 
       <div className="w-full lg:w-1/2 h-[10vh]  shadow-md shadow-slate-700 rounded p-2">
         <DescriptionView description={temp.user.description} />
