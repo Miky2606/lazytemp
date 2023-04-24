@@ -16,9 +16,7 @@ export default async function Template({
 }: {
   params: { template: string };
 }) {
-  const temp: StatusApi<TempUser> = await get_template(
-    params.template.replace("-", " ")
-  );
+  const temp: StatusApi<TempUser> = await get_template(params.template);
 
   if (temp === undefined || (temp as ErrorStatus).error !== undefined)
     return <NotFound />;

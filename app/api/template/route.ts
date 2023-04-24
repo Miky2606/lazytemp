@@ -8,7 +8,7 @@ import {
   get_user_id,
   save_temp,
 } from "../../../db/utils_db";
-import { v4 as uuidv4 } from "uuid";
+
 import { nanoid } from "nanoid";
 
 export async function POST(req: Request) {
@@ -39,6 +39,7 @@ export async function POST(req: Request) {
       );
 
     //add to the database
+    temp.name.replace(" ", "-");
     temp.id = nanoid(7);
     temp.date = new Date();
     save_temp(temp, temp.user);
