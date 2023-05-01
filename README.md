@@ -25,8 +25,10 @@ npm -g templaly
  The auth code is created instead you login to the website https://www.lazytemp.com/ and you can see in your profile
 
 ## Command
- --d: is for download;
- --u: is for upload;
+ --d: is for download
+ 
+ --u: is for upload
+
  --n: is obligated in download and upload
 
 ## Command.json
